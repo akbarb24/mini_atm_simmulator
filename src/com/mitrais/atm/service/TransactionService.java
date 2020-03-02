@@ -22,4 +22,18 @@ public class TransactionService {
         account.setBalance(newBalance);
         return account;
     }
+
+    public Account transfer(Account destAccount, Integer amount) {
+        Integer newBalance;
+
+        //deduct the user balance
+        newBalance = account.getBalance() - amount;
+        account.setBalance(newBalance);
+
+        //add balance to dest account
+        newBalance = destAccount.getBalance() + amount;
+        destAccount.setBalance(newBalance);
+
+        return account;
+    }
 }
