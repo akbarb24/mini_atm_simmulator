@@ -28,16 +28,20 @@ public class TransactionScreen {
     private void selectTransaction(String option, Account account) {
         WelcomeScreen welcomeScreen = WelcomeScreen.getInit();
         WithdrawScreen withdrawScreen = WithdrawScreen.getInit();
+        TransferScreen transferScreen = TransferScreen.getInit();
 
         switch (option) {
             case "1":
                 withdrawScreen.show(account);
                 break;
             case "2":
-//                TransferScreen.show(account);
+                transferScreen.show(account);
                 break;
             case "3":
                 welcomeScreen.show();
+                break;
+            case "4":
+                System.out.println("Balance: $" + account.getBalance());
                 break;
             default:
                 show(account);
