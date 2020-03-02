@@ -20,14 +20,17 @@ public class WelcomeScreen {
     }
 
     public void show() {
+        System.out.println("----------------------------");
         String accountNumber = inputAccountNumber();
         String pin = inputPin();
 
         Account account = AccountService.getInit().auth(accountNumber, pin);
-        if(account != null)
+        if(account != null) {
             TransactionScreen.getInit().show(account);
-        else
+        } else {
             System.out.println("📣 Invalid Account Number/PIN");
+            show();
+        }
     }
 
     private String inputAccountNumber() {
