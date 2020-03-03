@@ -37,15 +37,16 @@ public class TransferScreen {
                 transactionScreen.show(account);
 
         } while (!TransferValidation.validateAccountNumber(accountNumber)
-                || !TransferValidation.validateAmount(amountStr));
+                || !TransferValidation.validateAmount(amountStr, account));
 
         //show screen3 - get reference number
         refNumber = getRefNumber();
 
         //show screen4 - confirmation
-        if (confirm(accountNumber, amountStr, refNumber)) {
-            transferProcess(account, accountNumber, amountStr, refNumber);
+        if (!confirm(accountNumber, amountStr, refNumber)) {
+            transactionScreen.show(account);
         }
+        transferProcess(account, accountNumber, amountStr, refNumber);
     }
 
     private boolean confirm(String accountNumber, String amountStr, String refNumber) {
@@ -58,21 +59,21 @@ public class TransferScreen {
                 "1. Confirm Trx\n" +
                 "2. Cancel Trx\n" +
                 "Choose option[2]:");
-        String input = scanner.next();
+        String input = scanner.nextLine();
         if (input.equals("1"))
             return true;
         return false;
     }
 
     private void transferProcess(Account account, String destAccountNumber, String amountStr, String refNumber) {
-        TransactionService transactionService = TransactionService.getInit(account);
+        TransactionService transactionService = new TransactionService(account);
         AccountService accountService = AccountService.getInit();
 
         Account destAccount = accountService.findByAccountNumber(destAccountNumber);
         Integer amount = Integer.valueOf(amountStr);
 
-        transactionService.transfer(destAccount, amount);
-        showSummary(account, destAccountNumber, amount, refNumber);
+        Account latestAccount = transactionService.transfer(destAccount, amount);
+        showSummary(latestAccount, destAccountNumber, amount, refNumber);
     }
 
     private void showSummary(Account account, String destAccountNumber, Integer amount, String refNumber) {
@@ -86,8 +87,8 @@ public class TransferScreen {
                 "1. Transaction\n" +
                 "2. Exit\n" +
                 "Choose option[2]:");
-        String input = scanner.next();
-        if(input.equals("1"))
+        String input = scanner.nextLine();
+        if (input.equals("1"))
             transactionScreen.show(account);
         else {
             WelcomeScreen.getInit().show();
@@ -98,7 +99,7 @@ public class TransferScreen {
         System.out.println("----------------------------\n" +
                 "Please enter destination account and press enter to continue \n" +
                 "or keep it blank and press enter to go back to Transaction: ");
-        return scanner.next();
+        return scanner.nextLine();
     }
 
     private String getAmount() {
@@ -106,15 +107,16 @@ public class TransferScreen {
                 "Please enter transfer amount and press enter to continue or \n" +
                 "keep it blank and press enter to go back to Transaction: ");
         System.out.print("$");
-        return scanner.next();
+        return scanner.nextLine();
     }
 
     private String getRefNumber() {
         Random rnd = new Random();
         Integer number = rnd.nextInt(999999);
 
-        System.out.format("Reference Number: %06d\n" +
-                "press enter to continue.\n", number);
+        System.out.format("----------------------------\n" +
+                "Reference Number: %06d\n" +
+                "press enter to continue.", number);
 
         scanner.nextLine();
         return String.valueOf(number);
