@@ -47,4 +47,14 @@ public class Account {
     public void setBalance(Integer balance) {
         this.balance = balance;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "name='" + name + '\'' +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", pin='" + pin + '\'' +
+                ", balance=" + balance +
+                '}';
+    }
 }
