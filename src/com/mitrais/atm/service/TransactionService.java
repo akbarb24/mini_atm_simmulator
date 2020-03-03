@@ -10,13 +10,6 @@ public class TransactionService {
         this.account = account;
     }
 
-    public static TransactionService getInit(Account account){
-        if (INIT == null)
-            INIT = new TransactionService(account);
-
-        return INIT;
-    }
-
     public Account withDraw(Integer amount) {
         Integer newBalance = account.getBalance() - amount;
         account.setBalance(newBalance);
