@@ -27,7 +27,6 @@ public class WithdrawScreen {
         System.out.println("4. Other");
         System.out.println("5. Back");
         System.out.print("Please choose option[5] : ");
-
         selectAmount(scanner.next(), account);
     }
 
@@ -91,7 +90,7 @@ public class WithdrawScreen {
     }
 
     private void withDrawProcess(String amountStr, Account account) {
-        TransactionService transactionService = TransactionService.getInit(account);
+        TransactionService transactionService = new TransactionService(account);
 
         if (WithdrawValidation.validate(amountStr, account)) {
             Integer amount = Integer.valueOf(amountStr);
