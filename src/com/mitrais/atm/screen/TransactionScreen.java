@@ -8,7 +8,7 @@ public class TransactionScreen {
     private static TransactionScreen INIT;
     private Scanner scanner = new Scanner(System.in);
 
-    public static TransactionScreen getInit(){
+    public static TransactionScreen getInit() {
         if (INIT == null)
             INIT = new TransactionScreen();
 
@@ -41,7 +41,15 @@ public class TransactionScreen {
                 welcomeScreen.show();
                 break;
             case "4":
-                System.out.println("Balance: $" + account.getBalance());
+                try {
+                    System.out.println("> Account Number: "+ account.getAccountNumber() +
+                            "\n> Balance: $" + account.getBalance());
+                    Thread.sleep(2000);
+                    show(account);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
                 break;
             default:
                 show(account);
