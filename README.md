@@ -1,10 +1,10 @@
-##MINI ATM SIMULATOR v1.0
+## MINI ATM SIMULATOR v1.0
 This is the simple application which simulate how the ATM system works.
 
-###Requirements
+### Requirements
 * JDK 1.8
 
-###Installation
+### Installation
 1. Clone the repository [here](https://github.com/akbarb24/mini_atm_simulator.git).
 2. Go to the project's directory: `mini_atm_simulator`
 3. Compile all the __*java__ files by running this command below:
@@ -14,10 +14,10 @@ This is the simple application which simulate how the ATM system works.
 4. Create __manifest__ file by running: `echo Main-Class: com.mitrais.atm.Main > MANIFEST.mf`
 5. Create __jar__ file by running: `jar cfvm atm.jar MANIFEST.mf -C bin/ .`
 
-###Run the Application
+### Run the Application
 Type command: `java -jar atm.jar` on your Terminal. And then __*Voila!*__
 
-####Dummy User
+#### Dummy User
 You can use this account below to try this simulation.
 
 | Name         | Account Number | PIN    | Balance |
