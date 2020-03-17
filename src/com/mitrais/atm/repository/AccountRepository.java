@@ -32,7 +32,7 @@ public class AccountRepository {
 
     public void loadDataFile(String fileName) {
         try (Stream<String> dataStream = Files.lines(Paths.get(fileName))) {
-            loadDataValidation(castToAccountStream(dataStream));
+            loadDataValidation(createAccountObject(dataStream));
         } catch (IOException ioe) {
             System.err.println("Error reading file: " + ioe);
         }
@@ -45,7 +45,7 @@ public class AccountRepository {
                 .forEach(s -> loadData().add(s));
     }
 
-    private Stream<Account> castToAccountStream(Stream<String> dataStream) {
+    private Stream<Account> createAccountObject(Stream<String> dataStream) {
         return dataStream.map(row -> {
             String[] accountArr = row.split(";");
 
