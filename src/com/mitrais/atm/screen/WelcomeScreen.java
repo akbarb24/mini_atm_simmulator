@@ -3,7 +3,6 @@ package com.mitrais.atm.screen;
 import com.mitrais.atm.model.Account;
 import com.mitrais.atm.service.AccountService;
 import com.mitrais.atm.validation.LoginValidation;
-import sun.rmi.runtime.Log;
 
 import java.util.Scanner;
 
