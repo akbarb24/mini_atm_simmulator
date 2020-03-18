@@ -1,10 +1,13 @@
 package com.mitrais.atm.model;
 
+import java.util.List;
+
 public class Account {
     private String name;
     private String accountNumber;
     private String pin;
     private Integer balance;
+    private List<Transaction> transactionList;
 
     public Account() {
     }
@@ -46,6 +49,14 @@ public class Account {
 
     public void setBalance(Integer balance) {
         this.balance = balance;
+    }
+
+    public List<Transaction> getTransactionList() {
+        return transactionList;
+    }
+
+    public void setTransactionList(List<Transaction> transactionList) {
+        this.transactionList = transactionList;
     }
 
     @Override
