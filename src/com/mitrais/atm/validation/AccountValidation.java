@@ -15,7 +15,7 @@ public class AccountValidation {
         boolean valid = accountList.stream().noneMatch(account ->
                 account.getAccountNumber().equals(newAccount.getAccountNumber()));
         if (!valid)
-            System.out.println("There can't be 2 different accounts with the same Account Number");
+            System.out.println("📣 There can't be 2 different accounts with the same Account Number");
 
         return valid;
     }
@@ -27,7 +27,7 @@ public class AccountValidation {
                         && account.getPin().equals(newAccount.getPin()));
 
         if (!valid)
-            System.out.println("There can't be duplicated records: " + newAccount);
+            System.out.println("📣 There can't be duplicated records: " + newAccount);
 
         return valid;
     }
