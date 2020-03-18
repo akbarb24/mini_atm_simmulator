@@ -1,4 +1,4 @@
-## MINI ATM SIMULATOR v1.0
+## MINI ATM SIMULATOR v2.0
 This is the simple application which simulate how the ATM system works.
 
 ### Requirements
