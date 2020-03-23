@@ -3,6 +3,8 @@ package com.mitrais.atm.screen;
 import com.mitrais.atm.model.Account;
 import com.mitrais.atm.model.Transaction;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
@@ -89,7 +91,7 @@ public class TransactionScreen {
         showAccountDetail(account);
         System.out.println("LAST TRANSACTIONS LIST");
         transactionList.forEach(t -> {
-            String dateStr = sdf.format(t.getTransactionDate());
+            String dateStr = parseDate(t.getTransactionDate());
             System.out.format("| Date: %s | Amount: $%d | Type: %s | Description: %s |%n",
                     dateStr, t.getAmount(), t.getTransactionType(), t.getDescription());
         });
@@ -100,5 +102,11 @@ public class TransactionScreen {
         showAccountDetail(account);
         System.out.println(" NO TRANSACTION ");
         exitStatement(account);
+    }
+
+    private String parseDate(LocalDateTime dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDateTime = dateTime.format(formatter); // "1986-04-08 12:30"
+        return formattedDateTime;
     }
 }

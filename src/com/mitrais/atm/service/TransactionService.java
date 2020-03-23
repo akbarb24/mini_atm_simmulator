@@ -5,6 +5,7 @@ import com.mitrais.atm.common.TransTypeEnum;
 import com.mitrais.atm.model.Account;
 import com.mitrais.atm.model.Transaction;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -54,7 +55,7 @@ public class TransactionService {
     private void record(Account account, TransDescEnum transDesc, Integer amount) {
         String description = getTransactionDesc(transDesc, account);
         String transType = getTransactionType(transDesc);
-        Date transactionDate = new Date();
+        LocalDateTime transactionDate = LocalDateTime.now();
 
         Transaction transaction = new Transaction();
         transaction.setTransactionDate(transactionDate);

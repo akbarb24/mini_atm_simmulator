@@ -1,18 +1,18 @@
 package com.mitrais.atm.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Transaction {
-    private Date transactionDate;
+    private LocalDateTime transactionDate;
     private String description;
     private String transactionType;
     private Integer amount;
 
-    public Date getTransactionDate() {
+    public LocalDateTime getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(Date transactionDate) {
+    public void setTransactionDate(LocalDateTime transactionDate) {
         this.transactionDate = transactionDate;
     }
 
