@@ -6,6 +6,7 @@ import com.mitrais.atm.screen.WelcomeScreen;
 
 public class Main {
     public static void main(String[] args) {
+//        Integer.valueOf("ah");
         loadAccountData(args);
         WelcomeScreen.getInit().show();
     }

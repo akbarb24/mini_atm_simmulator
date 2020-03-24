@@ -2,6 +2,7 @@ package com.mitrais.atm.repository;
 
 import com.mitrais.atm.model.Account;
 import com.mitrais.atm.validation.AccountValidation;
+import com.mitrais.atm.validation.DataRowValidation;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 public class AccountRepository {
@@ -46,15 +48,18 @@ public class AccountRepository {
     }
 
     private Stream<Account> createAccountObject(Stream<String> dataStream) {
-        return dataStream.map(row -> {
-            String[] accountArr = row.split(";");
+        AtomicInteger index = new AtomicInteger();
 
-            Account account = new Account();
-            account.setName(accountArr[0]);
-            account.setPin(accountArr[1]);
-            account.setBalance(Integer.valueOf(accountArr[2]));
-            account.setAccountNumber(accountArr[3]);
-            return account;
-        });
+        return dataStream.filter(row -> DataRowValidation.isValid(index.incrementAndGet(), row, ";"))
+                .map(row -> {
+                    String[] rows = row.split(";");
+
+                    Account account = new Account();
+                    account.setName(rows[0]);
+                    account.setPin(rows[1]);
+                    account.setBalance(Integer.valueOf(rows[2]));
+                    account.setAccountNumber(rows[3]);
+                    return account;
+                });
     }
 }
