@@ -1,8 +1,18 @@
-## MINI ATM SIMULATOR v1.0
+## MINI ATM SIMULATOR v2.0
 This is the simple application which simulate how the ATM system works.
 
 ### Requirements
 * JDK 1.8
+
+#### Data Source File
+Prepare the CSV file for storing the Account Data by following format below:
+
+The delimiter is `;`
+```csv
+    account_name;pin;balance;account_number
+```
+
+Or you can find the example file inside Project Directory.
 
 ### Installation
 1. Clone the repository [here](https://github.com/akbarb24/mini_atm_simulator.git).
@@ -15,12 +25,23 @@ This is the simple application which simulate how the ATM system works.
 5. Create __jar__ file by running: `jar cfvm atm.jar MANIFEST.mf -C bin/ .`
 
 ### Run the Application
-Type command: `java -jar atm.jar` on your Terminal. And then __*Voila!*__
+There are 2 ways to run this application:
+* __Without Data Source File:__
+    
+    Type command: `java -jar atm.jar` on your Terminal.
+    
+    The Account Data will be loaded from default data below:
+    
+    | Name         | Account Number | PIN    | Balance |
+    | ------------ | -------------- | ------ | ------- |
+    | John Doe     | 112233         | 012108 | $100    |
+    | Jane Doe     | 112244         | 932012 | $30     |
+    
+* __With Data Source File:__
 
-#### Dummy User
-You can use this account below to try this simulation.
+    Type command: `java -jar atm.jar <data_source_filepath>` on your Terminal. 
 
-| Name         | Account Number | PIN    | Balance |
-| ------------ | -------------- | ------ | ------- |
-| John Doe     | 112233         | 012108 | $100    |
-| Jane Doe     | 112244         | 932012 | $30     |
+    *Example*
+    ```bash
+        java -jar atm.jar D:\Users\blabla\data.csv
+    ```
